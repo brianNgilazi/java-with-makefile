@@ -5,8 +5,10 @@
 
 JFLAGS = -g
 JAVAC = /usr/bin/javac
+JAVADOC = /usr/bin/javadoc
 SRCDIR=src
 BINDIR=bin
+DOCDIR=doc
 
 
 #
@@ -67,7 +69,10 @@ classes: $(CLASSES:.java=.class)
 #
 
 clean:
-	rm $(BINDIR)/*.class
+	rm $(BINDIR)/*.class && rm -r $(DOCDIR)/
 
 run: $(CLASS_FILES)
 	java -cp bin App
+
+doc:
+	$(JAVADOC) -d $(DOCDIR) $(SRCDIR)/*
